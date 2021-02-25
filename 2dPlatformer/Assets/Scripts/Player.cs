@@ -12,7 +12,7 @@ public class Player : MonoBehaviour
 
     private Rigidbody2D rb;
     private Animator anim;
-    private BoxCollider2D boxCol;
+    private CapsuleCollider2D boxCol;
     private Vector2 movement;
     private float deltaX;
     private bool isJump;
@@ -23,7 +23,7 @@ public class Player : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
-        boxCol = GetComponent<BoxCollider2D>();
+        boxCol = GetComponent<CapsuleCollider2D>();
     }
 
 
