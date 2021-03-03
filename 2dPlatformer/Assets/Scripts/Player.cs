@@ -19,23 +19,36 @@ public class Player : MonoBehaviour
     private Vector2 boundsMax;
     private Vector2 boundsMin;
     private float deltaX;
+    private float horizontal;
     private bool isJump;
     private bool grounded;
     private bool isPushing;
     private bool isAttack;
+
+    public bool HasControl;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         boxCol = GetComponent<CapsuleCollider2D>();
+        HasControl = true;
     }
 
     void Update()
     {
-        float horizontal = Input.GetAxis("Horizontal");
-        isJump |= Input.GetButtonDown("Jump");
-        isAttack = Input.GetKeyDown(KeyCode.F);
+        if (HasControl)
+        {
+            horizontal = Input.GetAxis("Horizontal");
+            isJump |= Input.GetButtonDown("Jump");
+            isAttack = Input.GetKeyDown(KeyCode.F);
+        }
+        else
+        {
+            horizontal = 0;
+            isJump = false;
+            isAttack = false;
+        }
 
         deltaX = horizontal * speed;
         boundsMax = boxCol.bounds.max;
@@ -55,11 +68,13 @@ public class Player : MonoBehaviour
     {
         Vector2 corner1 = new Vector2(boundsMax.x - 0.025f, boundsMin.y - groundOffset);
         Vector2 corner2 = new Vector2(boundsMin.x + 0.025f, boundsMin.y - groundOffset);
-       // Debug.DrawLine(corner1, corner2, Color.red, 0.001f, false);
-        Collider2D hit = Physics2D.OverlapArea(corner1, corner2);
+        Debug.DrawLine(corner1, corner2, Color.red, 0.001f, false);
+        Collider2D hit = Physics2D.OverlapArea(corner1, corner2, solidLayer);
         grounded = false;
         if (hit != null)
             grounded = true;
+
+       rb.gravityScale = grounded && deltaX == 0 ? 0 : 1;
     }
 
     private void CheckToPush(float horizontalAxisInput)
@@ -70,12 +85,11 @@ public class Player : MonoBehaviour
         Vector2 corner3 = new Vector2(boundsMax.x + dir * pushOffset, boundsMin.y + 0.1f);
         Vector2 corner4 = new Vector2(boundsMin.x + dir * pushOffset, boundsMin.y + 0.1f);
         Debug.DrawLine(corner3, corner4, Color.green, 0.001f, false);
-        Debug.Log(dir);
         Collider2D hitPush = Physics2D.OverlapArea(corner3, corner4, solidLayer);
         isPushing = false;
         if (hitPush != null)
             isPushing = true;
-        
+
     }
 
     private void PlayerAnimation(float horizontalAxisInput)
