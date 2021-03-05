@@ -7,10 +7,13 @@ public class Player : MonoBehaviour
 {
     [SerializeField] private float speed;
     [SerializeField] private float jumpForce;
+    [SerializeField] private float throwForce;
     [SerializeField] private float minSpeedToRun;
     [SerializeField] private LayerMask solidLayer;
     [SerializeField] private float groundOffset;
     [SerializeField] private float pushOffset;
+    [SerializeField] private GameObject bombPrefab;
+    [HideInInspector] public bool HasControl;
 
     private Rigidbody2D rb;
     private Animator anim;
@@ -24,9 +27,9 @@ public class Player : MonoBehaviour
     private bool grounded;
     private bool isPushing;
     private bool isAttack;
+    private bool isBomb;
 
-    public bool HasControl;
-
+    
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -42,6 +45,7 @@ public class Player : MonoBehaviour
             horizontal = Input.GetAxis("Horizontal");
             isJump |= Input.GetButtonDown("Jump");
             isAttack = Input.GetKeyDown(KeyCode.F);
+            isBomb |= Input.GetKeyDown(KeyCode.B);
         }
         else
         {
@@ -57,11 +61,27 @@ public class Player : MonoBehaviour
         CheckGround();
         CheckToPush(horizontal);
         PlayerAnimation(horizontal);
+
+        //Debug.Log(transform.localScale.x);
+    }
+
+    private void ThrowBomb(bool check)
+    {
+        if (!check)
+            return;
+
+        var dir = transform.localScale.x;
+        Vector2 throwDirection = new Vector2(dir, 1f);
+        var bomb = Instantiate(bombPrefab, new Vector3(transform.position.x, transform.position.y + 0.5f, 0), Quaternion.identity);
+        Rigidbody2D bombRb = bomb.GetComponent<Rigidbody2D>();
+        bombRb.AddForce(throwDirection * throwForce, ForceMode2D.Impulse);
+        isBomb = false;
     }
 
     private void FixedUpdate()
     {
         MoveCharacter();
+        ThrowBomb(isBomb);
     }
 
     private void CheckGround()
@@ -74,7 +94,7 @@ public class Player : MonoBehaviour
         if (hit != null)
             grounded = true;
 
-       rb.gravityScale = grounded && deltaX == 0 ? 0 : 1;
+      // rb.gravityScale = grounded && deltaX == 0 ? 0 : 1;
     }
 
     private void CheckToPush(float horizontalAxisInput)
