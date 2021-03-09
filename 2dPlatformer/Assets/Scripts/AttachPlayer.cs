@@ -4,11 +4,27 @@ using UnityEngine;
 
 public class AttachPlayer : MonoBehaviour
 {
+    private Player player;
+    private Rigidbody2D rb;
+
+    private void Start()
+    {
+        rb = GetComponent<Rigidbody2D>();
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.name == "character")
         {
-            collision.gameObject.transform.parent = transform;
+            player = collision.GetComponent<Player>();
+            player.platformVelocity = rb.velocity;
+        }
+    }
+    void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.gameObject.name == "character")
+        {
+            player.platformVelocity = rb.velocity;
         }
     }
 
@@ -16,12 +32,9 @@ public class AttachPlayer : MonoBehaviour
     {
         if (collision.gameObject.name == "character")
         {
-            collision.gameObject.transform.parent = null;
+            player.platformVelocity = Vector2.zero;
+            player = null;
         }
-    }
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-        
     }
 
 }

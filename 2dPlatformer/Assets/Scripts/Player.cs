@@ -14,6 +14,7 @@ public class Player : MonoBehaviour
     [SerializeField] private float pushOffset;
     [SerializeField] private GameObject bombPrefab;
     [HideInInspector] public bool HasControl;
+    [HideInInspector] public Vector2 platformVelocity;
 
     private Rigidbody2D rb;
     private Animator anim;
@@ -29,13 +30,14 @@ public class Player : MonoBehaviour
     private bool isAttack;
     private bool isBomb;
 
-    
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         boxCol = GetComponent<CapsuleCollider2D>();
         HasControl = true;
+        platformVelocity = Vector2.zero;
     }
 
     void Update()
@@ -94,7 +96,7 @@ public class Player : MonoBehaviour
         if (hit != null)
             grounded = true;
 
-      // rb.gravityScale = grounded && deltaX == 0 ? 0 : 1;
+        // rb.gravityScale = grounded && deltaX == 0 ? 0 : 1;
     }
 
     private void CheckToPush(float horizontalAxisInput)
@@ -149,7 +151,8 @@ public class Player : MonoBehaviour
 
     private void MoveCharacter()
     {
-        movement = new Vector2(deltaX, rb.velocity.y);
+        movement = new Vector2(deltaX, rb.velocity.y) + platformVelocity;
+
         if (isJump && grounded)
         {
             rb.AddForce(Vector2.up * jumpForce);
