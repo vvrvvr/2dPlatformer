@@ -30,7 +30,6 @@ public class Player : MonoBehaviour
     private bool isAttack;
     private bool isBomb;
 
-
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -63,8 +62,6 @@ public class Player : MonoBehaviour
         CheckGround();
         CheckToPush(horizontal);
         PlayerAnimation(horizontal);
-
-        //Debug.Log(transform.localScale.x);
     }
 
     private void ThrowBomb(bool check)
@@ -95,7 +92,6 @@ public class Player : MonoBehaviour
         grounded = false;
         if (hit != null)
             grounded = true;
-
         // rb.gravityScale = grounded && deltaX == 0 ? 0 : 1;
     }
 

@@ -8,7 +8,6 @@ public class CenterOfMass : MonoBehaviour
     [SerializeField] float yCenter;
     private Rigidbody2D rb;
 
-
     void Start()
     {
         Vector2 com = new Vector2(xCenter, yCenter);
