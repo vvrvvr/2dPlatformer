@@ -12,7 +12,6 @@ public class Player : MonoBehaviour
     [SerializeField] private LayerMask solidLayer;
     [SerializeField] private float groundOffset;
     [SerializeField] private float pushOffset;
-    private float pushOffsetY = 0.4f;
     [SerializeField] private GameObject bombPrefab;
     [HideInInspector] public bool HasControl;
     [HideInInspector] public float platformVelocity;
@@ -25,6 +24,7 @@ public class Player : MonoBehaviour
     private Vector2 boundsMin;
     private float deltaX;
     private float horizontal;
+    private float pushOffsetY = 0.4f;
     private bool isJump;
     private bool grounded;
     private bool isPushing;
@@ -63,6 +63,7 @@ public class Player : MonoBehaviour
         CheckGround();
         CheckToPush(horizontal);
         PlayerAnimation(horizontal);
+        
     }
 
     private void ThrowBomb(bool check)
@@ -86,8 +87,8 @@ public class Player : MonoBehaviour
 
     private void CheckGround()
     {
-        Vector2 corner1 = new Vector2(boundsMax.x - 0.025f, boundsMin.y - groundOffset);
-        Vector2 corner2 = new Vector2(boundsMin.x + 0.025f, boundsMin.y - groundOffset);
+        Vector2 corner1 = new Vector2(boundsMax.x - 0.06f, boundsMin.y - groundOffset); //magic numbers
+        Vector2 corner2 = new Vector2(boundsMin.x + 0.06f, boundsMin.y - groundOffset);
         Debug.DrawLine(corner1, corner2, Color.red, 0.001f, false);
         Collider2D hit = Physics2D.OverlapArea(corner1, corner2, solidLayer);
         grounded = false;
@@ -126,6 +127,8 @@ public class Player : MonoBehaviour
         //jumping
         if (!grounded)
         {
+            if (rb.velocity == Vector2.zero) //предотвратить залипания на углах платформ
+                deltaX *= -0.5f;
             anim.SetBool("isJumping", true);
             anim.ResetTrigger("Attack");
         }
