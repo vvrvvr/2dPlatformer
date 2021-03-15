@@ -300,11 +300,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4815281346389226460, guid: a9366984be8662e44ad514c65da20d1b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 33
+      value: 52
       objectReference: {fileID: 0}
     - target: {fileID: 4815281346389226460, guid: a9366984be8662e44ad514c65da20d1b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -14
+      value: -9
       objectReference: {fileID: 0}
     - target: {fileID: 4815281346389226460, guid: a9366984be8662e44ad514c65da20d1b, type: 3}
       propertyPath: m_LocalPosition.z
@@ -19199,7 +19199,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1644295359}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1, y: 2, z: 0}
+  m_LocalPosition: {x: 32, y: 5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -19228,7 +19228,7 @@ MonoBehaviour:
   pushOffset: 0.05
   bombPrefab: {fileID: 6019135258110049593, guid: 21676aa01bec9944d852e989e64862f5, type: 3}
   HasControl: 0
-  platformVelocity: {x: 0, y: 0}
+  platformVelocity: 0
 --- !u!50 &1644295364
 Rigidbody2D:
   serializedVersion: 4
@@ -20953,11 +20953,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1112940420103031435, guid: ffa07a854da03204b8d29c11da653736, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 39
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 1112940420103031435, guid: ffa07a854da03204b8d29c11da653736, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -6
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1112940420103031435, guid: ffa07a854da03204b8d29c11da653736, type: 3}
       propertyPath: m_LocalPosition.z

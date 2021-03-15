@@ -17,14 +17,14 @@ public class AttachPlayer : MonoBehaviour
         if (collision.gameObject.name == "character")
         {
             player = collision.GetComponent<Player>();
-            player.platformVelocity = rb.velocity;
+            player.platformVelocity = rb.velocity.x;
         }
     }
     void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.gameObject.name == "character")
         {
-            player.platformVelocity = rb.velocity;
+            player.platformVelocity = rb.velocity.x;
         }
     }
 
@@ -32,7 +32,7 @@ public class AttachPlayer : MonoBehaviour
     {
         if (collision.gameObject.name == "character")
         {
-            player.platformVelocity = Vector2.zero;
+            player.platformVelocity = 0;
             player = null;
         }
     }

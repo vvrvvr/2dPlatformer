@@ -12,9 +12,10 @@ public class Player : MonoBehaviour
     [SerializeField] private LayerMask solidLayer;
     [SerializeField] private float groundOffset;
     [SerializeField] private float pushOffset;
+    private float pushOffsetY = 0.4f;
     [SerializeField] private GameObject bombPrefab;
     [HideInInspector] public bool HasControl;
-    [HideInInspector] public Vector2 platformVelocity;
+    [HideInInspector] public float platformVelocity;
 
     private Rigidbody2D rb;
     private Animator anim;
@@ -36,7 +37,7 @@ public class Player : MonoBehaviour
         anim = GetComponent<Animator>();
         boxCol = GetComponent<CapsuleCollider2D>();
         HasControl = true;
-        platformVelocity = Vector2.zero;
+        platformVelocity = 0;
     }
 
     void Update()
@@ -92,7 +93,7 @@ public class Player : MonoBehaviour
         grounded = false;
         if (hit != null)
             grounded = true;
-        // rb.gravityScale = grounded && deltaX == 0 ? 0 : 1;
+       // rb.gravityScale = grounded && deltaX == 0 ? 0 : 1;
     }
 
     private void CheckToPush(float horizontalAxisInput)
@@ -100,8 +101,8 @@ public class Player : MonoBehaviour
         float dir = 0;
         if (horizontalAxisInput != 0)
             dir = Mathf.Sign(horizontalAxisInput);
-        Vector2 corner3 = new Vector2(boundsMax.x + dir * pushOffset, boundsMin.y + 0.1f);
-        Vector2 corner4 = new Vector2(boundsMin.x + dir * pushOffset, boundsMin.y + 0.1f);
+        Vector2 corner3 = new Vector2(boundsMax.x + dir * pushOffset, boundsMin.y + pushOffsetY);
+        Vector2 corner4 = new Vector2(boundsMin.x + dir * pushOffset, boundsMin.y + pushOffsetY);
         Debug.DrawLine(corner3, corner4, Color.green, 0.001f, false);
         Collider2D hitPush = Physics2D.OverlapArea(corner3, corner4, solidLayer);
         isPushing = false;
@@ -131,7 +132,7 @@ public class Player : MonoBehaviour
         else
             anim.SetBool("isJumping", false);
         //Attack
-        if (isAttack && Mathf.Abs(rb.velocity.y) == 0)
+        if (isAttack && grounded)
         {
             anim.SetTrigger("Attack");
             isAttack = false;
@@ -147,7 +148,7 @@ public class Player : MonoBehaviour
 
     private void MoveCharacter()
     {
-        movement = new Vector2(deltaX, rb.velocity.y) + platformVelocity;
+        movement = new Vector2(deltaX + platformVelocity, rb.velocity.y);
 
         if (isJump && grounded)
         {
