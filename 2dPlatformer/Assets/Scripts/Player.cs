@@ -93,7 +93,7 @@ public class Player : MonoBehaviour
         grounded = false;
         if (hit != null)
             grounded = true;
-       // rb.gravityScale = grounded && deltaX == 0 ? 0 : 1;
+        // rb.gravityScale = grounded && deltaX == 0 ? 0 : 1;
     }
 
     private void CheckToPush(float horizontalAxisInput)
@@ -138,7 +138,7 @@ public class Player : MonoBehaviour
             isAttack = false;
         }
         //pushing
-        if (horizontalAxisInput != 0 && Mathf.Abs(rb.velocity.y) == 0 && isPushing)
+        if (horizontalAxisInput != 0 && grounded && isPushing)
         {
             anim.SetBool("isPushing", true);
         }
