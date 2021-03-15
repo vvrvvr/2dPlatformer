@@ -4,20 +4,29 @@ using UnityEngine;
 
 public class PushAwayOnCollision : MonoBehaviour
 {
-    [SerializeField] private float impulseForce;
-    [SerializeField] private float x;
-    [SerializeField] private float y;
-    public bool check;
+    [SerializeField] private int damage;
+    private float impulseForce = 10f;
+    private float x = 0.5f;
+    private float y = 1f;
+    private float xCenter;
+
+    private void Awake()
+    {
+        xCenter = GetComponent<Collider2D>().bounds.center.x;
+
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.name == "character" || collision.gameObject.name == "crate (2)")
+        if (collision.gameObject.name == "character")
         {
-            Debug.Log("trigger");
-            collision.gameObject.GetComponent<Player>().HasControl = false;
+            var player = collision.gameObject.GetComponent<Player>();
+            var playerTransform = collision.gameObject.GetComponent<Transform>();
             var playerRb = collision.gameObject.GetComponent<Rigidbody2D>();
-            if(check)
-                playerRb.velocity = Vector2.zero;
-            playerRb.AddForce(new Vector2(x, y) * impulseForce, ForceMode2D.Impulse);
+            var dir = Mathf.Sign(playerTransform.position.x - xCenter);
+
+            player.LoseControl(0.4f);
+            playerRb.velocity = Vector2.zero;
+            playerRb.AddForce(new Vector2(x * dir, y) * impulseForce, ForceMode2D.Impulse);
         }
     }
 }

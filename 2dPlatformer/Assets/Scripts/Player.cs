@@ -31,6 +31,7 @@ public class Player : MonoBehaviour
     private bool isAttack;
     private bool isBomb;
 
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -63,7 +64,7 @@ public class Player : MonoBehaviour
         CheckGround();
         CheckToPush(horizontal);
         PlayerAnimation(horizontal);
-        
+
     }
 
     private void ThrowBomb(bool check)
@@ -81,7 +82,8 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
-        MoveCharacter();
+        if (HasControl)
+            MoveCharacter();
         ThrowBomb(isBomb);
     }
 
@@ -93,7 +95,9 @@ public class Player : MonoBehaviour
         Collider2D hit = Physics2D.OverlapArea(corner1, corner2, solidLayer);
         grounded = false;
         if (hit != null)
+        {
             grounded = true;
+        }
         // rb.gravityScale = grounded && deltaX == 0 ? 0 : 1;
     }
 
@@ -165,4 +169,16 @@ public class Player : MonoBehaviour
     {
         anim.SetTrigger("Attack");
     }
+
+    public void LoseControl(float time)
+    {
+        StartCoroutine(WaitToChangeHasControl(time));
+    }
+    private IEnumerator WaitToChangeHasControl(float time)
+    {
+        HasControl = false;
+        yield return new WaitForSeconds(time);
+        HasControl = true;
+    }
+
 }
