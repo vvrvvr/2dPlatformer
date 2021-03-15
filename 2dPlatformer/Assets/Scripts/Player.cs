@@ -113,7 +113,6 @@ public class Player : MonoBehaviour
         isPushing = false;
         if (hitPush != null)
             isPushing = true;
-
     }
 
     private void PlayerAnimation(float horizontalAxisInput)

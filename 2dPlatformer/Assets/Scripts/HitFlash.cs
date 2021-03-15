@@ -4,15 +4,17 @@ using UnityEngine;
 
 public class HitFlash : MonoBehaviour
 {
-    private float index;
-    [SerializeField] private float amplitude;
-    [SerializeField] private float interval;
     [HideInInspector] public bool isFlashing;
     [SerializeField] SpriteRenderer sprRend;
+    private float index;
+    private float amplitude;
+    private float interval;
 
     void Start()
     {
         index = 0;
+        amplitude = 0.8f;
+        interval = 12f;
         isFlashing = false;
     }
 
@@ -24,7 +26,6 @@ public class HitFlash : MonoBehaviour
             float flashAmount = Mathf.Abs(amplitude * Mathf.Sin(interval * index));
             sprRend.material.SetFloat("_FlashAmount", flashAmount);
         }
-
     }
     public void MakeItFlash(float time)
     {

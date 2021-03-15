@@ -384,6 +384,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: crate (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 4815281346389226465, guid: a9366984be8662e44ad514c65da20d1b, type: 3}
+      propertyPath: m_Size.x
+      value: 0.9359956
+      objectReference: {fileID: 0}
+    - target: {fileID: 4815281346389226465, guid: a9366984be8662e44ad514c65da20d1b, type: 3}
+      propertyPath: m_Offset.x
+      value: 0.49759126
+      objectReference: {fileID: 0}
     - target: {fileID: 4815281346389226466, guid: a9366984be8662e44ad514c65da20d1b, type: 3}
       propertyPath: m_Mass
       value: 1
@@ -19610,6 +19618,7 @@ GameObject:
   - component: {fileID: 1644295363}
   - component: {fileID: 1644295366}
   - component: {fileID: 1644295367}
+  - component: {fileID: 1644295368}
   - component: {fileID: 1644295364}
   - component: {fileID: 1644295365}
   m_Layer: 7
@@ -19777,6 +19786,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 10
+  currentHealth: 0
   isInvulnerable: 0
 --- !u!114 &1644295367
 MonoBehaviour:
@@ -19790,10 +19800,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7887559efa0f6f0469610a0815f2bc6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  amplitude: 0.6
-  interval: 12
   isFlashing: 0
   sprRend: {fileID: 1644295361}
+--- !u!114 &1644295368
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1644295359}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e991555a55d098947ae9f5d79c0cae4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  knockbackTime: 2
 --- !u!1 &1646127716
 GameObject:
   m_ObjectHideFlags: 0
@@ -20568,7 +20589,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96bb6ae0dd6024a48a84e62ac4e80316, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 0
+  damage: 2
 --- !u!61 &1799323560
 BoxCollider2D:
   m_ObjectHideFlags: 0

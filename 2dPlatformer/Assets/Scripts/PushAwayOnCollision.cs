@@ -5,10 +5,6 @@ using UnityEngine;
 public class PushAwayOnCollision : MonoBehaviour
 {
     [SerializeField] private int damage;
-    private float knockbackTime = 2f;
-    private float impulseForce = 10f;
-    private float x = 0.5f;
-    private float y = 1f;
     private float xCenter;
 
     private void Awake()
@@ -20,22 +16,7 @@ public class PushAwayOnCollision : MonoBehaviour
     {
         if (collision.gameObject.name == "character")
         {
-            if (collision.gameObject.GetComponent<Health>().isInvulnerable)
-                return;
-            var player = collision.gameObject.GetComponent<Player>();
-            var playerTransform = collision.gameObject.GetComponent<Transform>();
-            var playerRb = collision.gameObject.GetComponent<Rigidbody2D>();
-            var playerHitFlash = collision.gameObject.GetComponent<HitFlash>();
-            playerHitFlash.MakeItFlash(knockbackTime);
-            var playerHealth = collision.gameObject.GetComponent<Health>();
-            playerHealth.TakeDamage(damage);
-            playerHealth.MakeInvulnerable(knockbackTime);
-
-            var dir = Mathf.Sign(playerTransform.position.x - xCenter);
-
-            player.LoseControl(0.4f);
-            playerRb.velocity = Vector2.zero;
-            playerRb.AddForce(new Vector2(x * dir, y) * impulseForce, ForceMode2D.Impulse);
+            collision.GetComponent<KnockbackCharacter>().KnockbackPlayer(damage, xCenter);
         }
     }
 }
