@@ -5,14 +5,14 @@ using UnityEngine;
 public class Health : MonoBehaviour
 {
     [SerializeField] private float maxHealth;
-    private float currentHealth;
+    [SerializeField] private float currentHealth;
     [HideInInspector] public bool isInvulnerable;
-    private bool isAlive;
+    //private bool isAlive;
 
     private void Awake()
     {
         currentHealth = maxHealth;
-        isAlive = true;
+        //isAlive = true;
         isInvulnerable = false;
     }
 
@@ -26,8 +26,8 @@ public class Health : MonoBehaviour
 
     private void CheckIsAlive()
     {
-        if (currentHealth < 0)
-            isAlive = false;
+       // if (currentHealth < 0)
+           // isAlive = false;
     }
 
     public void MakeInvulnerable(float time)
