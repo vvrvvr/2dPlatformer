@@ -21,6 +21,11 @@ public class Enemy : MonoBehaviour
 
     private void Dead()
     {
+        anim.SetTrigger("dead");
+    }
 
+    public void Destroy()
+    {
+        Destroy(gameObject);
     }
 }

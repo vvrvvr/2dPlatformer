@@ -21901,6 +21901,7 @@ MonoBehaviour:
   maxHealth: 4
   currentHealth: 0
   isInvulnerable: 0
+  isAlive: 0
 --- !u!114 &2078732506
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21931,6 +21932,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: {fileID: 2078732505}
   hitFlash: {fileID: 2078732506}
+  anim: {fileID: 2078732500}
   flashTime: 0.1
 --- !u!1 &2082743087
 GameObject:
