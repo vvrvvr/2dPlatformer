@@ -7,12 +7,12 @@ public class Health : MonoBehaviour
     [SerializeField] private float maxHealth;
     [SerializeField] private float currentHealth;
     [HideInInspector] public bool isInvulnerable;
-    //private bool isAlive;
+    [HideInInspector] public bool isAlive;
 
     private void Awake()
     {
         currentHealth = maxHealth;
-        //isAlive = true;
+        isAlive = true;
         isInvulnerable = false;
     }
 
@@ -27,8 +27,9 @@ public class Health : MonoBehaviour
     private void CheckIsAlive()
     {
         if (currentHealth <= 0)
-            Destroy(gameObject);
-           // isAlive = false;
+        {
+            isAlive = false;
+        }
     }
 
     public void MakeInvulnerable(float time)
