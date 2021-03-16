@@ -12,12 +12,11 @@ public class PlayerAttack : MonoBehaviour
     public void Attack()
     {
         Collider2D[] EnemiesHit = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, EnemyLayers);
-        foreach (var enemy in EnemiesHit)
+        foreach (var element in EnemiesHit)
         {
-            Debug.Log(enemy.name);
-            var enemyHealth = enemy.GetComponent<Health>();
-            if(enemyHealth !=null)
-                enemyHealth.TakeDamage(playerDamage);
+            var enemy = element.GetComponent<Enemy>();
+            if(enemy != null)
+                enemy.Damage(playerDamage);
         }
     }
 

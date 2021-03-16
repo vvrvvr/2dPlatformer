@@ -20174,10 +20174,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7887559efa0f6f0469610a0815f2bc6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isFlashing: 0
   sprRend: {fileID: 1644295361}
   amplitude: 0.8
   interval: 12
+  isFlashing: 0
 --- !u!114 &1644295368
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21764,6 +21764,8 @@ GameObject:
   - component: {fileID: 2078732504}
   - component: {fileID: 2078732503}
   - component: {fileID: 2078732505}
+  - component: {fileID: 2078732506}
+  - component: {fileID: 2078732507}
   m_Layer: 10
   m_Name: Mushroom
   m_TagString: Untagged
@@ -21809,7 +21811,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: ac43b62056df0924cb499afcf00516cc, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -21896,9 +21898,40 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3257d3da096195646ae6c92074c4debe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 2
+  maxHealth: 4
   currentHealth: 0
   isInvulnerable: 0
+--- !u!114 &2078732506
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2078732499}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7887559efa0f6f0469610a0815f2bc6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprRend: {fileID: 2078732501}
+  amplitude: 0.8
+  interval: 20
+  isFlashing: 0
+--- !u!114 &2078732507
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2078732499}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ab29f6ff0357cc479cf81f0ce954ca2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: {fileID: 2078732505}
+  hitFlash: {fileID: 2078732506}
+  flashTime: 0.1
 --- !u!1 &2082743087
 GameObject:
   m_ObjectHideFlags: 0

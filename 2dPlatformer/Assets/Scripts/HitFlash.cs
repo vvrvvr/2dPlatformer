@@ -4,17 +4,16 @@ using UnityEngine;
 
 public class HitFlash : MonoBehaviour
 {
-    [HideInInspector] public bool isFlashing;
     [SerializeField] SpriteRenderer sprRend;
     [SerializeField] private float amplitude;
     [SerializeField] private float interval;
+    [HideInInspector] public bool isFlashing;
     private float index;
+    private Coroutine cor;
 
     void Start()
     {
         index = 0;
-       // amplitude = 0.8f;
-        //interval = 12f;
         isFlashing = false;
     }
 
@@ -29,7 +28,13 @@ public class HitFlash : MonoBehaviour
     }
     public void MakeItFlash(float time)
     {
-        StartCoroutine(TimeToFlash(time));
+        if (cor != null)
+        {
+            StopCoroutine(cor);
+            isFlashing = false;
+            sprRend.material.SetFloat("_FlashAmount", 0f);
+        }
+        cor = StartCoroutine(TimeToFlash(time));
     }
 
     private IEnumerator TimeToFlash(float time)
@@ -38,6 +43,8 @@ public class HitFlash : MonoBehaviour
         yield return new WaitForSeconds(time);
         isFlashing = false;
         sprRend.material.SetFloat("_FlashAmount", 0f);
+        cor = null;
+        index = 0;
     }
 
 }
