@@ -5,10 +5,13 @@ using UnityEngine;
 public class followObject : MonoBehaviour
 {
     [SerializeField] private Transform objectToFollow;
+    private float smoothTime = 0.2f;
+    private Vector3 _velocity = Vector3.zero;
 
-    void Update()
+    
+    private void FixedUpdate()
     {
         var follow = new Vector3(objectToFollow.position.x, objectToFollow.position.y, transform.position.z);
-        transform.position = follow;
+        transform.position = Vector3.SmoothDamp(transform.position, follow, ref _velocity, smoothTime);
     }
 }

@@ -64,7 +64,6 @@ public class Player : MonoBehaviour
         CheckGround();
         CheckToPush(horizontal);
         PlayerAnimation(horizontal);
-
     }
 
     private void ThrowBomb(bool check)
