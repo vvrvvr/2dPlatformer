@@ -3,19 +3,20 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - player
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - background
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
-  - 
+  - solid
+  - player
+  - wheels
+  - bomb
+  - enemy
   - 
   - 
   - 
