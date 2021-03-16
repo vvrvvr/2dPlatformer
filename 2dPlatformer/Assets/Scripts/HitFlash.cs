@@ -6,15 +6,15 @@ public class HitFlash : MonoBehaviour
 {
     [HideInInspector] public bool isFlashing;
     [SerializeField] SpriteRenderer sprRend;
+    [SerializeField] private float amplitude;
+    [SerializeField] private float interval;
     private float index;
-    private float amplitude;
-    private float interval;
 
     void Start()
     {
         index = 0;
-        amplitude = 0.8f;
-        interval = 12f;
+       // amplitude = 0.8f;
+        //interval = 12f;
         isFlashing = false;
     }
 

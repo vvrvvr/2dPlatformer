@@ -26,7 +26,8 @@ public class Health : MonoBehaviour
 
     private void CheckIsAlive()
     {
-       // if (currentHealth < 0)
+        if (currentHealth <= 0)
+            Destroy(gameObject);
            // isAlive = false;
     }
 

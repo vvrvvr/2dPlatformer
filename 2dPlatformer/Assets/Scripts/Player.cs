@@ -15,10 +15,12 @@ public class Player : MonoBehaviour
     [SerializeField] private GameObject bombPrefab;
     [HideInInspector] public bool HasControl;
     [HideInInspector] public float platformVelocity;
+    [HideInInspector] public bool grounded;
 
     private Rigidbody2D rb;
     private Animator anim;
     private CapsuleCollider2D boxCol;
+    private PlayerAttack playerAttack;
     private Vector2 movement;
     private Vector2 boundsMax;
     private Vector2 boundsMin;
@@ -26,7 +28,6 @@ public class Player : MonoBehaviour
     private float horizontal;
     private float pushOffsetY = 0.4f;
     private bool isJump;
-    private bool grounded;
     private bool isPushing;
     private bool isAttack;
     private bool isBomb;
@@ -37,6 +38,7 @@ public class Player : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         boxCol = GetComponent<CapsuleCollider2D>();
+        playerAttack = GetComponent<PlayerAttack>();
         HasControl = true;
         platformVelocity = 0;
     }
@@ -140,6 +142,7 @@ public class Player : MonoBehaviour
         if (isAttack && grounded)
         {
             anim.SetTrigger("Attack");
+            playerAttack.Attack();
             isAttack = false;
         }
         //pushing

@@ -3969,6 +3969,36 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8670cafa856ca2545b0fce324be00de0, type: 3}
+--- !u!1 &765716323
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 765716324}
+  m_Layer: 7
+  m_Name: Attack point
+  m_TagString: Untagged
+  m_Icon: {fileID: 8418204508859773708, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &765716324
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 765716323}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1, y: 0.333, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1644295362}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &771901519
 GameObject:
   m_ObjectHideFlags: 0
@@ -19957,6 +19987,7 @@ GameObject:
   - component: {fileID: 1644295363}
   - component: {fileID: 1644295367}
   - component: {fileID: 1644295368}
+  - component: {fileID: 1644295366}
   - component: {fileID: 1644295364}
   - component: {fileID: 1644295365}
   m_Layer: 7
@@ -20044,9 +20075,10 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1644295359}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3, y: 3, z: 0}
+  m_LocalPosition: {x: 3, y: 2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 765716324}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -20074,6 +20106,7 @@ MonoBehaviour:
   bombPrefab: {fileID: 6019135258110049593, guid: 21676aa01bec9944d852e989e64862f5, type: 3}
   HasControl: 0
   platformVelocity: 0
+  grounded: 0
 --- !u!50 &1644295364
 Rigidbody2D:
   serializedVersion: 4
@@ -20111,6 +20144,24 @@ CapsuleCollider2D:
   m_Offset: {x: -0.058319807, y: 0.4688996}
   m_Size: {x: 0.6371217, y: 0.94556165}
   m_Direction: 0
+--- !u!114 &1644295366
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1644295359}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 491efb3509ed97548be73e02ac3f9db9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackPoint: {fileID: 765716324}
+  attackRange: 0.37
+  playerDamage: 2
+  EnemyLayers:
+    serializedVersion: 2
+    m_Bits: 1024
 --- !u!114 &1644295367
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20125,6 +20176,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isFlashing: 0
   sprRend: {fileID: 1644295361}
+  amplitude: 0.8
+  interval: 12
 --- !u!114 &1644295368
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21710,7 +21763,8 @@ GameObject:
   - component: {fileID: 2078732500}
   - component: {fileID: 2078732504}
   - component: {fileID: 2078732503}
-  m_Layer: 0
+  - component: {fileID: 2078732505}
+  m_Layer: 10
   m_Name: Mushroom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -21830,6 +21884,21 @@ CircleCollider2D:
   m_Offset: {x: 0.5, y: 0.30421066}
   serializedVersion: 2
   m_Radius: 0.30421066
+--- !u!114 &2078732505
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2078732499}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3257d3da096195646ae6c92074c4debe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 2
+  currentHealth: 0
+  isInvulnerable: 0
 --- !u!1 &2082743087
 GameObject:
   m_ObjectHideFlags: 0
