@@ -1,10 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     [SerializeField] HealthBar health;
+    [SerializeField] GameObject deathMenu;
     private PlayerStats playerStats;
 
     private void OnEnable()
@@ -26,20 +26,19 @@ public class GameManager : MonoBehaviour
         SetHealth();
     }
 
-
-    void Update()
-    {
-        
-    }
-
     private void SetHealth()
     {
         health.SetHealth(playerStats.currentHealth);
         if (playerStats.currentHealth <= 0)
         {
-            // death function
-            //playerStats.isAlive = false;
+            playerStats.PlayerDeath();
+            deathMenu.SetActive(true);
         }
+    }
+
+    public void RestartGame()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
 }

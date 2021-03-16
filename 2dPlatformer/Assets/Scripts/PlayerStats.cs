@@ -11,6 +11,7 @@ public class PlayerStats : MonoBehaviour
     [HideInInspector] public bool isInvulnerable;
     [HideInInspector] public bool isAlive;
     public static PlayerStats Singleton;
+    public static Action OnDeath;
     public static Action OnHealthChange;
     public static Action OnUpdateScore;
 
@@ -24,7 +25,7 @@ public class PlayerStats : MonoBehaviour
         Singleton = this;
         currentHealth = maxHealth;
         isInvulnerable = false;
-        DontDestroyOnLoad(gameObject);
+       // DontDestroyOnLoad(gameObject);
     }
 
     public void UpdateTotalScore()
@@ -64,5 +65,11 @@ public class PlayerStats : MonoBehaviour
         isInvulnerable = true;
         yield return new WaitForSeconds(time);
         isInvulnerable = false;
+    }
+
+    public void PlayerDeath()
+    {
+        isAlive = false;
+        OnDeath?.Invoke();
     }
 }

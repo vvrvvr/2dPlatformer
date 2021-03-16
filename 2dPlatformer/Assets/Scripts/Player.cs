@@ -32,6 +32,17 @@ public class Player : MonoBehaviour
     private bool isAttack;
     private bool isBomb;
 
+    private float attackRate = 4f;
+    private float nextAttackTime = 0;
+    private void OnEnable()
+    {
+        PlayerStats.OnDeath += Death;
+    }
+
+    private void OnDisable()
+    {
+        PlayerStats.OnDeath -= Death;
+    }
 
     void Start()
     {
@@ -49,7 +60,14 @@ public class Player : MonoBehaviour
         {
             horizontal = Input.GetAxis("Horizontal");
             isJump |= Input.GetButtonDown("Jump");
-            isAttack = Input.GetKeyDown(KeyCode.F);
+            if (Time.time >= nextAttackTime)
+            {
+                if (Input.GetKeyDown(KeyCode.F))
+                {
+                    isAttack = true;
+                    nextAttackTime = Time.time + 1f / attackRate;
+                }
+            }
             isBomb |= Input.GetKeyDown(KeyCode.B);
         }
         else
@@ -180,6 +198,12 @@ public class Player : MonoBehaviour
         HasControl = false;
         yield return new WaitForSeconds(time);
         HasControl = true;
+    }
+
+    private void Death()
+    {
+        anim.SetTrigger("dead");
+        this.enabled = false;
     }
 
 }
