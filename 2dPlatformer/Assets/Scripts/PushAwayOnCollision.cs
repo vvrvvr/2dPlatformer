@@ -21,4 +21,13 @@ public class PushAwayOnCollision : MonoBehaviour
             collision.GetComponent<KnockbackCharacter>().KnockbackPlayer(damage, xCenter);
         }
     }
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.gameObject.name == "character")
+        {
+            if (PlayerStats.Singleton.isInvulnerable)
+                return;
+            collision.GetComponent<KnockbackCharacter>().KnockbackPlayer(damage, xCenter);
+        }
+    }
 }
