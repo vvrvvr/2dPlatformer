@@ -16,6 +16,8 @@ public class PushAwayOnCollision : MonoBehaviour
     {
         if (collision.gameObject.name == "character")
         {
+            if (PlayerStats.Singleton.isInvulnerable)
+                return;
             collision.GetComponent<KnockbackCharacter>().KnockbackPlayer(damage, xCenter);
         }
     }
