@@ -195,6 +195,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -204,8 +205,8 @@ TextureImporter:
   textureSettings:
     serializedVersion: 2
     filterMode: 0
-    aniso: -1
-    mipBias: -100
+    aniso: 1
+    mipBias: 0
     wrapU: 1
     wrapV: 1
     wrapW: 1
@@ -1504,6 +1505,64 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      _ileset_54: -8513270387333521653
+      _ileset_47: 2723015996138640288
+      _ileset_2: 4212222644409353904
+      _ileset_12: -5361777604253113345
+      _ileset_3: 7469347825048535377
+      _ileset_37: 1321461032896533032
+      _ileset_51: 6323504661551384604
+      _ileset_28: -5783908406628504719
+      _ileset_19: 4717816841969787583
+      _ileset_39: -286351997902395723
+      _ileset_10: -7691632332168605977
+      _ileset_32: -6220273595538297227
+      _ileset_48: 8066701661281732126
+      _ileset_30: -4587429044343614967
+      _ileset_22: -6550059307364547101
+      _ileset_45: -784052723013713246
+      _ileset_24: -3692465345232586863
+      _ileset_25: -4103219279917592827
+      _ileset_53: -250147681312621003
+      _ileset_31: 7626566319220958553
+      _ileset_17: -8076087899114995681
+      _ileset_35: 2758936603366059947
+      _ileset_56: 2528678002769363399
+      _ileset_5: 1634639847142267306
+      _ileset_41: 6203123470869211013
+      _ileset_46: -6299391874040926597
+      _ileset_55: 749942429634032477
+      _ileset_40: 1266963637853926223
+      _ileset_44: -1905908978408105138
+      _ileset_6: 1987275740370614775
+      _ileset_23: -685273608039116472
+      _ileset_50: 826006223447802722
+      _ileset_20: -5592888351774266648
+      _ileset_42: 4651250791803271586
+      _ileset_8: -5200281073174291979
+      _ileset_29: -7747443651467709164
+      _ileset_26: -2604273441881376231
+      _ileset_11: -1634929507825639370
+      _ileset_1: 5137454304981896316
+      _ileset_49: 5952069523507282250
+      _ileset_16: 3812371729438447778
+      _ileset_21: -6865054126803472844
+      _ileset_36: 7651853419288350965
+      _ileset_14: 2361299749464560528
+      _ileset_13: -4901121980496906562
+      _ileset_43: 470412560418095537
+      _ileset_7: 7538260605047829705
+      _ileset_34: 7838393249287170394
+      _ileset_9: -4325572690722682137
+      _ileset_15: 1066625312078178428
+      _ileset_27: -8732997781416684243
+      _ileset_38: 5630486751782222154
+      _ileset_0: -6077817283944774343
+      _ileset_18: -3901567984438083661
+      _ileset_4: 7979645254536759590
+      _ileset_33: -4596281446592061307
+      _ileset_52: -3958680207956455649
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
