@@ -27,21 +27,16 @@ public class PlayerStats : MonoBehaviour
         isInvulnerable = false;
        // DontDestroyOnLoad(gameObject);
     }
-
-    public void UpdateTotalScore()
-    {
-        totalScore += currentScore;
-        currentScore = 0;
-    }
+    
 
     public void ResetCurrentScore()
     {
         currentScore = 0;
     }
 
-    public void Score()
+    public void UpdateScore(int val)
     {
-        currentScore += 1;
+        totalScore += val;
         OnUpdateScore?.Invoke();
     }
 
@@ -73,9 +68,5 @@ public class PlayerStats : MonoBehaviour
         OnDeath?.Invoke();
     }
 
-    public void AddScore(int scoreValue)
-    {
-        totalScore += scoreValue;
-        
-    }
+    
 }
