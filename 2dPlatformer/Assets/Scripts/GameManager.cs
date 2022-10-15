@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] HealthBar health;
     [SerializeField] GameObject deathMenu;
     [SerializeField] private TextMeshProUGUI text;
+    [SerializeField] private Player player;
     private PlayerStats playerStats;
 
     private void OnEnable()
@@ -33,6 +34,7 @@ public class GameManager : MonoBehaviour
         playerStats = PlayerStats.Singleton;
         health.SetMaxHealth(playerStats.maxHealth);
         SetHealth();
+        player.HasControl = false;
     }
 
     private void SetHealth()
@@ -45,6 +47,10 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void SetPlayerControls(bool controlsState)
+    {
+        player.HasControl = controlsState;
+    }
     
 
     public void RestartGame()
