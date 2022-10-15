@@ -72,4 +72,10 @@ public class PlayerStats : MonoBehaviour
         isAlive = false;
         OnDeath?.Invoke();
     }
+
+    public void AddScore(int scoreValue)
+    {
+        totalScore += scoreValue;
+        
+    }
 }

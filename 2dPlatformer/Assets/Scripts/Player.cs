@@ -26,14 +26,15 @@ public class Player : MonoBehaviour
     private Vector2 boundsMin;
     private float deltaX;
     private float horizontal;
+    private float currentDir = 1;
     private float pushOffsetY = 0.4f;
     private bool isJump;
     private bool isPushing;
-    private bool isAttack;
-    private bool isBomb;
 
-    private float attackRate = 4f;
-    private float nextAttackTime = 0;
+    // private bool isAttack;
+    // private bool isBomb;
+    // private float attackRate = 4f;
+    // private float nextAttackTime = 0;
     private void OnEnable()
     {
         PlayerStats.OnDeath += Death;
@@ -49,7 +50,7 @@ public class Player : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         boxCol = GetComponent<CapsuleCollider2D>();
-        playerAttack = GetComponent<PlayerAttack>();
+        //playerAttack = GetComponent<PlayerAttack>();
         HasControl = true;
         platformVelocity = 0;
     }
@@ -58,23 +59,23 @@ public class Player : MonoBehaviour
     {
         if (HasControl)
         {
-            horizontal = Input.GetAxis("Horizontal");
+            horizontal = currentDir;
             isJump |= Input.GetButtonDown("Jump");
-            if (Time.time >= nextAttackTime)
-            {
-                if (Input.GetKeyDown(KeyCode.F))
-                {
-                    isAttack = true;
-                    nextAttackTime = Time.time + 1f / attackRate;
-                }
-            }
-            isBomb |= Input.GetKeyDown(KeyCode.B);
+            // if (Time.time >= nextAttackTime)
+            // {
+            //     if (Input.GetKeyDown(KeyCode.F))
+            //     {
+            //         isAttack = true;
+            //         nextAttackTime = Time.time + 1f / attackRate;
+            //     }
+            // }
+            //isBomb |= Input.GetKeyDown(KeyCode.B);
         }
         else
         {
             horizontal = 0;
             isJump = false;
-            isAttack = false;
+            //isAttack = false;
         }
 
         deltaX = horizontal * speed;
@@ -96,14 +97,14 @@ public class Player : MonoBehaviour
         var bomb = Instantiate(bombPrefab, new Vector3(transform.position.x, transform.position.y + 0.5f, 0), Quaternion.identity);
         Rigidbody2D bombRb = bomb.GetComponent<Rigidbody2D>();
         bombRb.AddForce(throwDirection * throwForce, ForceMode2D.Impulse);
-        isBomb = false;
+        // isBomb = false;
     }
 
     private void FixedUpdate()
     {
         if (HasControl)
             MoveCharacter();
-        ThrowBomb(isBomb);
+        // ThrowBomb(isBomb);
     }
 
     private void CheckGround()
@@ -131,7 +132,11 @@ public class Player : MonoBehaviour
         Collider2D hitPush = Physics2D.OverlapArea(corner3, corner4, solidLayer);
         isPushing = false;
         if (hitPush != null)
+        {
             isPushing = true;
+            currentDir *= -1;
+        }
+            
     }
 
     private void PlayerAnimation(float horizontalAxisInput)
@@ -156,13 +161,9 @@ public class Player : MonoBehaviour
         }
         else
             anim.SetBool("isJumping", false);
-        //Attack
-        if (isAttack && grounded)
-        {
-            anim.SetTrigger("Attack");
-            playerAttack.Attack();
-            isAttack = false;
-        }
+        
+        
+        
         //pushing
         if (horizontalAxisInput != 0 && grounded && isPushing)
         {
@@ -184,10 +185,10 @@ public class Player : MonoBehaviour
         isJump = false;
     }
 
-    public void AttackEnd()
-    {
-        anim.SetTrigger("Attack");
-    }
+    // public void AttackEnd()
+    // {
+    //     anim.SetTrigger("Attack");
+    // }
 
     public void LoseControl(float time)
     {
