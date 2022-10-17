@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class StartWarning : MonoBehaviour
 {
@@ -10,7 +11,7 @@ public class StartWarning : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && !isPressed)
+        if (Input.GetMouseButtonDown(0) && !isPressed)
         {
             isPressed = true;
             StartCoroutine(WaitOneFrame());

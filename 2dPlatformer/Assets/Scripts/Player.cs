@@ -60,7 +60,7 @@ public class Player : MonoBehaviour
         if (HasControl)
         {
             horizontal = currentDir;
-            isJump |= Input.GetButtonDown("Jump");
+            isJump |= Input.GetMouseButtonDown(0);
             // if (Time.time >= nextAttackTime)
             // {
             //     if (Input.GetKeyDown(KeyCode.F))
